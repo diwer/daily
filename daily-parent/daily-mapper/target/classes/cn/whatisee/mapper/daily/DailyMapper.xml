@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//www.mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.whatisee.mapper.daily.DailyMapper">
+
+    <resultMap id="daily" type="cn.whatisee.domain.Daily">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="htmlcontemt" column="htmlcontent"/>
+        <result property="isdelete" column="isdelete"/>
+        <result property="creattetime" column="createtime"/>
+        <result property="userid" column="userid"/>
+        <association property="user" column="userid" javaType="cn.whatisee.domain.User" select="getUser">
+            <id property="id" column="id"/>
+            <result property="username" column="username"/>
+            <result property="password" column="password"/>
+            <result property="createtime" column="createtime"/>
+            <result property="lastlogintime" column="lastlogintime"/>
+        </association>
+    </resultMap>
+
+    <insert id="addDaily" parameterType="cn.whatisee.domain.Daily">
+        INSERT INTO  dy_daily
+        (id,content,htmlcontent,isdelete,createtime,userid)
+        VALUES
+        (#{id},#{content},#{htmlcontent},0,NOW(),${userid})
+    </insert>
+    <update id="updateDaily" parameterType="cn.whatisee.domain.Daily">
+        UPDATE  dy_daily SET
+        content=${content},
+        isdelete=${isdelete},
+        htmlcontent=${htmlcontent},
+        createtime=${createtime}
+        WHERE id=${id}
+    </update>
+    <select id="findDaily" parameterType="String" resultType="cn.whatisee.domain.Daily">
+        SELECT id,content,htmlcontent,isdelete,createtime,userid
+        from dy_daily WHERE id=#{id}
+    </select>
+    <update id="delDaily" parameterType="String">
+        UPDATE dy_daily set isdelete=1
+        WHERE id=${id}
+    </update>
+    <select id="getUser" parameterType="String" resultType="cn.whatisee.domain.User">
+        select id,username,password,createtime,lastlogintime from dy_user where id=${id};
+    </select>
+</mapper>

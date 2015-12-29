@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/daily-parent/daily-api/daily-api.iml" filepath="$PROJECT_DIR$/daily-parent/daily-api/daily-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daily-parent/daily-core/daily-core.iml" filepath="$PROJECT_DIR$/daily-parent/daily-core/daily-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daily-parent/daily-domain/daily-domain.iml" filepath="$PROJECT_DIR$/daily-parent/daily-domain/daily-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daily-parent/daily-mapper/daily-mapper.iml" filepath="$PROJECT_DIR$/daily-parent/daily-mapper/daily-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daily-parent/daily-parent.iml" filepath="$PROJECT_DIR$/daily-parent/daily-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daily-parent/daily-service/daily-service.iml" filepath="$PROJECT_DIR$/daily-parent/daily-service/daily-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/daily-parent/daily-web/daily-web.iml" filepath="$PROJECT_DIR$/daily-parent/daily-web/daily-web.iml" />
+    </modules>
+  </component>
+</project>
