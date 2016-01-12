@@ -18,7 +18,16 @@
             <result property="lastlogintime" column="lastlogintime"/>
         </association>
     </resultMap>
-
+    <select id="findDailysByUserId" parameterType="String">
+        select id,content,htmlcontent,isdelete,createtime,userid
+        FROM  dy_daily
+        where userid=#{id}
+    </select>
+    <select id="findDailyById" parameterType="String">
+        select id,content,htmlcontent,isdelete,createtime,userid
+        FROM  dy_daily
+        where id=#{id}
+    </select>
     <insert id="addDaily" parameterType="cn.whatisee.domain.Daily">
         INSERT INTO  dy_daily
         (id,content,htmlcontent,isdelete,createtime,userid)

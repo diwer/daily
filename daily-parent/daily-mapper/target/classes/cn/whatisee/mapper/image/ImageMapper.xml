@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//www.mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.whatisee.mapper.image.ImageMapper">
+    <resultMap id="image" type="cn.whatisee.domain.Image">
+        <id property="id" column="id"/>
+        <result property="filePath" column="filepath"/>
+        <result property="fileName" column="filename"/>
+        <result property="isdelete" column="isdelete"/>
+        <result property="flagDesc" column="flagdesc"/>
+        <result property="type" column="type" />
+        <result property="creater" column="creater"/>
+        <result property="orderNo" column="orderno"/>
+        <result property="usedId" column="usedid"/>
+        <result property="createTime" column="createTime"/>
+    </resultMap>
+    <delete id="delImage" parameterType="String">
+        DELETE  from dy_image where id=#{id};
+    </delete>
+    <update id="updateImage" parameterType="cn.whatisee.domain.Image">
+        UPDATE  dy_image set filepath =#{filePath},
+         filename=#{fileName},
+         isdelete=#{isdelete},
+         flagdesc=#{flagDesc},
+         creater=#{type},
+         usedId=#{usedId},
+         createtime=#{createTime}
+        where id=#{id};
+    </update>
+    <sql id="selectimagefield">id,filepath,filename,isdelete,type,flagdesc,creater,orderno,usedId,createtime</sql>
+    <insert id="addImage" parameterType="cn.whatisee.domain.Image">
+        INSERT INTO dy_image (<include refid="selectimagefield"/>)
+        VALUES (#{id},#{filePath},#{fileName},#{isdelete},#{type},#{flagDesc},#{creater},#{orderNo},#{usedId},#{createTime})
+    </insert>
+    <select id="findImages" parameterType="String" resultType="cn.whatisee.domain.Image">
+        select
+        <include refid="selectimagefield"/>
+        from dy_image where id in
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </select>
+    <select id="findImage" parameterType="String" resultType="cn.whatisee.domain.Image">
+        select
+        <include refid="selectimagefield"/>
+        from dy_image where id =#{id}
+    </select>
+
 
 </mapper>

@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//www.mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.whatisee.mapper.user.UserMapper">
+    <resultMap id="user" type="cn.whatisee.domain.User">
+        <id property="id" column="id"/>
+        <result property="password" column="password"/>
+        <result property="userword" column="userword"/>
+        <result property="createtime" column="createtime"/>
+        <result property="lastlogintime" column="lastlogintime"/>
+    </resultMap>
+    <sql id="selectsql">
+        id,username,password,createtime,lastlogintime
+    </sql>
+    <insert id="addUser" parameterType="cn.whatisee.domain.User">
+        INSERT INTO dy_user
+        (
+        <include refid="selectsql"/>
+        )
+        VALUES (#{id},#{username},#{password},#{createtime},#{lastlogintime})
+    </insert>
+    <update id="updateUser" parameterType="cn.whatisee.domain.User">
+        UPDATE dy_user set password =#{password},
+         lastlogintime=#{lastlogintime}
+        where id=#{id};
+    </update>
 
+    <select id="getUsers" resultType="cn.whatisee.domain.User">
+        select
+        <include refid="selectsql"/>
+        from dy_user where id in
+        <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+    </select>
+    <select id="getUser" parameterType="String" resultType="cn.whatisee.domain.User">
+        select
+        <include refid="selectsql"/>
+        from dy_user where id =#{id}
+    </select>
+    <delete id="delUser" parameterType="String">
+      DELETE  from dy_user where id=#{id}
+    </delete>
 </mapper>

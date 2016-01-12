@@ -13,8 +13,9 @@ public class Image {
     private ImageType type;
     private String flagDesc;
     private String usedId;
+    private int isdelete;
     private Date createTime;
-    private String creator;
+    private String creater;
 
 
     public String getId() {
@@ -49,12 +50,13 @@ public class Image {
         this.orderNo = orderNo;
     }
 
-    public ImageType getType() {
-        return type;
+    public int getType() {
+
+        return type.getCode();
     }
 
-    public void setType(ImageType type) {
-        this.type = type;
+    public void setType(int type) {
+        this.type = ImageType.valueOfEnum(type);
     }
 
     public String getFlagDesc() {
@@ -81,11 +83,20 @@ public class Image {
         this.createTime = createTime;
     }
 
-    public String getCreator() {
-        return creator;
+
+    public int getIsdelete() {
+        return isdelete;
     }
 
-    public void setCreater(String creator) {
-        this.creator = creator;
+    public void setIsdelete(int isdelete) {
+        this.isdelete = isdelete;
+    }
+
+    public String getCreater() {
+        return creater;
+    }
+
+    public void setCreater(String creater) {
+        this.creater = creater;
     }
 }

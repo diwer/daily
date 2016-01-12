@@ -1,24 +1,20 @@
 package cn.whatisee.domain;
 
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+
 import java.util.Date;
 
 /**
  * Created by ppc on 2015/12/22.
  */
 public class User {
-    private String username;
+    private String nickname;
+    private String email;
     private String password;
     private String id;
     private Date createtime;
     private Date lastlogintime;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getPassword() {
         return password;
@@ -50,6 +46,22 @@ public class User {
 
     public void setLastlogintime(Date lastlogintime) {
         this.lastlogintime = lastlogintime;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 
